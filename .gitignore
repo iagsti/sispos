@@ -1,3 +1,6 @@
 .sispos
 .vscode
 *.sqlite3
+__pycache__
+relatorios
+encamnhamentos

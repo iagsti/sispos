@@ -1,0 +1,26 @@
+<form action="./new" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+
+    {{ form.relator.label_tag }}
+    {{ form.relator.errors }}
+    {{ form.relator }}
+
+    {{ form.orientador.label_tag }}
+    {{ form.orientador.errors }}
+    {{ form.orientador }}
+
+    {{ form.programa.label_tag }}
+    {{ form.programa.errors }}
+    {{ form.programa }}
+
+    {{ form.relatorio.label_tag }}
+    {{ form.relatorio.errors }}
+    {{ form.relatorio }}
+
+    {{ form.encaminhamento.label_tag }}
+    {{ form.encaminhamento.errors }}
+    {{ form.encaminhamento }}
+
+    <button type="submit">Enviar</button>
+
+</form>
