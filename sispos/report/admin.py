@@ -1,3 +1,8 @@
 from django.contrib import admin
+from sispos.report.models import Report
 
-# Register your models here.
+
+class ReportModelAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Report, ReportModelAdmin)
