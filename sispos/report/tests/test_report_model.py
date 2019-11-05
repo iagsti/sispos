@@ -1,15 +1,25 @@
 from django.test import TestCase
 from sispos.report.models import Report
+from sispos.accounts.models import User
 import uuid
 
 class TestReportModel(TestCase):
     def setUp(self):
+        aluno = User.objects.create_user(
+            login='3544444',
+            main_email='main@test.com',
+            password='92874',
+            name='Marc',
+            type='I'
+        )
+
         self.obj = Report(
             relator='Relator 1',
             orientador='Orientador 1',
             programa='Programa 1',
             relatorio='relatorio.pdf',
-            encaminhamento='encaminhamento.pdf'
+            encaminhamento='encaminhamento.pdf',
+            aluno=aluno
         )
         self.obj.save()
     
@@ -22,4 +32,12 @@ class TestReportModel(TestCase):
         self.assertTrue(Report.objects.exists())
 
     def test_uuid(self):
+        """Must contain uuid field"""
         self.assertIsInstance(self.obj.uuid, uuid.UUID)
+
+    def test_aluno(self):
+        """It must has aluno field"""
+        self.assertIsInstance(self.obj.aluno, User)
+
+    def test_str(self):
+        self.assertEqual('Marc', str(self.obj))

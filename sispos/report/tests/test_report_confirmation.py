@@ -3,19 +3,29 @@ from django.shortcuts import resolve_url as r
 from unittest import mock
 from django.core.files import File
 from sispos.report.models import Report
+from sispos.accounts.models import User
 
 
 class ReportConfirmationTest(TestCase):
     def setUp(self):
         file_mock = mock.MagicMock(spec=File)
         file_mock.name = 'test.pdf'
+        
+        aluno = User.objects.create_user(
+            login='3544444',
+            main_email='main@test.com',
+            password='92874',
+            name='Marc',
+            type='I'
+        )
 
         report = Report.objects.create(
             relator='Relator 1',
             orientador='Orientador 1',
             programa='Mestrado',
             relatorio=file_mock,
-            encaminhamento=file_mock    
+            encaminhamento=file_mock,
+            aluno=aluno
         )
         self.resp = self.client.get(r('report:confirmation', slug=report.uuid))
 
