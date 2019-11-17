@@ -36,6 +36,8 @@ AUTHLIB_OAUTH_CLIENTS = {
     }
 }
 
+LOGIN_URL = '/auth/login/'
+
 oauth.register(
     name='usp',
     request_token_url=config('REQUEST_TOKEN_URL'),
