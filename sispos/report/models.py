@@ -20,3 +20,28 @@ class Report(models.Model):
 
     def __str__(self):
         return self.aluno.name
+
+
+class ParecerOrientadorMestrado(models.Model):
+    s1_desempenho = models.TextField('desempenho das disciplinas', max_length=2048)
+    s1_projeto = models.TextField('projeto de pesquisa', max_length=2048)
+    s1_outras_atividades = models.TextField('outras atividades', max_length=2048)
+    s2_desempenho = models.TextField('desempenho das disciplinas', max_length=2048)
+    s2_metodologia = models.TextField('texto sobre a metodologia de trabalho', max_length=2048)
+    s2_abordagem = models.TextField('Abordagem do problema a ser investigado', max_length=2048)
+    s2_outras_atividades = models.TextField('Outras Atividades', max_length=2048)
+    s3_resultados = models.TextField('resultados', max_length=2048)
+    s3_perspectivas = models.TextField('perspectivas para a conclusão da dissertação', max_length=2048)
+    s3_resumo = models.TextField('resumo expandido', max_length=2048)
+    s3_outras_atividades = models.TextField('outras atividades', max_length=2048)
+    report = models.OneToOneField('Report', on_delete=models.CASCADE)
+    created_at = models.DateTimeField('criado em', auto_now_add=True)
+    updated_at = models.DateTimeField('atualizado em', auto_now=True)
+
+    class Meta:
+        verbose_name = 'parecer do orientador - mestrado'
+        verbose_name_plural = 'pareceres dos orientadores - mestrados'
+
+
+    def __str__(self):
+        return self.report.orientador
