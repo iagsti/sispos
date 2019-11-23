@@ -39,5 +39,10 @@ class TestReportModel(TestCase):
         """It must has aluno field"""
         self.assertIsInstance(self.obj.aluno, User)
 
+    def test_semestre(self):
+        """It must contain semestre field"""
+        self.assertIsInstance(self.obj.semestre, str)
+        
     def test_str(self):
         self.assertEqual('Marc', str(self.obj))
+

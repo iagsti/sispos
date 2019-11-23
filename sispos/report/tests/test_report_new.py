@@ -59,6 +59,7 @@ class TestReportNewPost(TestCase):
         self.client.force_login(aluno)
         
         self.data = dict(
+            semestre='Primeiro Semestre',
             relator='Relator 1',
             orientador='Orientador 1',
             programa='Mestrado',
