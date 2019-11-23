@@ -31,7 +31,7 @@ class TestReportNewGetLoggedIn(TestCase):
         Relatório=arquivo, Formulário de encaminhamento=arquivo"""
         expected = (
             ('<form', 1),
-            ('<select', 3),
+            ('<select', 4),
             ('<input', 3),
             ('<button', 1)
         )
