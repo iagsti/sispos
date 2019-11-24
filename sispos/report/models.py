@@ -1,11 +1,12 @@
 from django.db import models
 from django.urls import reverse
-from sispos.report.choices import RELATORES, ORIENTADORES, PROGRAMA
+from sispos.report.choices import RELATORES, ORIENTADORES, PROGRAMA, SEMESTRE
 from uuid import uuid4
 from sispos.accounts.models import User
 
 
 class Report(models.Model):
+    semestre = models.CharField(name='semestre', choices=SEMESTRE ,max_length=50)
     relator = models.CharField(name='relator', choices=RELATORES, max_length=50)
     orientador = models.CharField(name='orientador', choices=ORIENTADORES, max_length=50)
     programa = models.CharField(name='programa', choices=PROGRAMA, max_length=50)

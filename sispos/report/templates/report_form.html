@@ -1,6 +1,10 @@
 <form action="./new" enctype="multipart/form-data" method="post">
     {% csrf_token %}
 
+    {{ form.semestre.label_tag }}
+    {{ form.semestre.errors }}
+    {{ form.semestre }}
+
     {{ form.relator.label_tag }}
     {{ form.relator.errors }}
     {{ form.relator }}

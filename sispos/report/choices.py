@@ -15,3 +15,9 @@ PROGRAMA = (
     ('Doutorado', 'Doutorado'),
     ('Pós Doutorado', 'Pós Doutorado'),
 )
+
+SEMESTRE = (
+    ('Primeiro Semestre', 'Primeiro Semestre'),
+    ('Segundo Semestre', 'Segundo Semestre'),
+    ('Terceiro Semestre', 'Terceiro Semestre'),
+)

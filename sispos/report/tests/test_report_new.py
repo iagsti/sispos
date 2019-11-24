@@ -31,7 +31,7 @@ class TestReportNewGetLoggedIn(TestCase):
         Relatório=arquivo, Formulário de encaminhamento=arquivo"""
         expected = (
             ('<form', 1),
-            ('<select', 3),
+            ('<select', 4),
             ('<input', 3),
             ('<button', 1)
         )
@@ -59,6 +59,7 @@ class TestReportNewPost(TestCase):
         self.client.force_login(aluno)
         
         self.data = dict(
+            semestre='Primeiro Semestre',
             relator='Relator 1',
             orientador='Orientador 1',
             programa='Mestrado',
