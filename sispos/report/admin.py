@@ -25,7 +25,7 @@ class ParecerInline(admin.StackedInline):
 
 
 class ReportModelAdmin(admin.ModelAdmin):
-    list_display = ['aluno_name', 'programa', 'orientador', 'relator']
+    list_display = ['aluno_name']
     inlines = [ParecerInline]
 
     def aluno_name(self, obj):

@@ -9,7 +9,7 @@ from django.contrib import admin
 
 class ReportAdminTest(TestCase):
     def test_list_display(self):
-        list = ['aluno_name', 'orientador', 'programa', 'relator']
+        list = ['aluno_name']
 
         for expected in list:
             with self.subTest():
@@ -28,11 +28,6 @@ class ReportAdminTest(TestCase):
         )
 
         report = Report.objects.create(
-            relator='Relator 1',
-            orientador='Orientador 1',
-            programa='Mestrado',
-            relatorio=file_mock,
-            encaminhamento=file_mock,
             aluno=aluno
         )
 

@@ -14,11 +14,6 @@ class TestReportModel(TestCase):
         )
 
         self.obj = Report(
-            relator='Relator 1',
-            orientador='Orientador 1',
-            programa='Programa 1',
-            relatorio='relatorio.pdf',
-            encaminhamento='encaminhamento.pdf',
             aluno=aluno
         )
         self.obj.save()
@@ -38,10 +33,6 @@ class TestReportModel(TestCase):
     def test_aluno(self):
         """It must has aluno field"""
         self.assertIsInstance(self.obj.aluno, User)
-
-    def test_semestre(self):
-        """It must contain semestre field"""
-        self.assertIsInstance(self.obj.semestre, str)
         
     def test_str(self):
         self.assertEqual('Marc', str(self.obj))
