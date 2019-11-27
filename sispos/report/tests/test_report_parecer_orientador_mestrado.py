@@ -47,9 +47,6 @@ class ReportParecerOrientadorMestradoTest(TestCase):
         """It must have a updated_at attribute"""
         self.assertIsInstance(self.obj.updated_at, datetime)
 
-    def test_str(self):
-        self.assertEqual(self.obj.report.orientador, str(self.obj))
-
     def create_report(self):
         user = User.objects.create_user(
             login='3544444',
@@ -60,11 +57,6 @@ class ReportParecerOrientadorMestradoTest(TestCase):
         )
 
         return user.report_set.create(
-            relator='Relator 1',
-            orientador='Orientador 1',
-            programa='Programa 1',
-            relatorio='relatorio.pdf',
-            encaminhamento='encaminhamento.pdf',
             aluno=user
         )
 

@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from unittest import mock
 from django.core.files import File
-from sispos.report.models import Report
+from sispos.report.models import Report, Semestre
 from sispos.accounts.models import User
 
 
@@ -19,14 +19,18 @@ class ReportConfirmationTest(TestCase):
             type='I'
         )
 
-        report = Report.objects.create(
-            relator='Relator 1',
+        report = Report.objects.create(aluno=aluno)
+        
+        Semestre.objects.create(
+            semestre='Primeiro Semestre', 
+            relator='Relator 1', 
             orientador='Orientador 1',
             programa='Mestrado',
             relatorio=file_mock,
             encaminhamento=file_mock,
-            aluno=aluno
+            report=report
         )
+
         self.resp = self.client.get(r('report:confirmation', slug=report.uuid))
 
     def test_confirmation(self):

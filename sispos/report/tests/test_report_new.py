@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from django.core.files import File
 from sispos.report.forms import ReportForm
-from sispos.report.models import Report
+from sispos.report.models import Report, Semestre
 from unittest import mock
 from sispos.accounts.models import User
 
@@ -75,6 +75,10 @@ class TestReportNewPost(TestCase):
     def test_create(self):
         """Object must exists on database"""
         self.assertTrue(Report.objects.exists())
+
+    def test_semestre(self):
+        """Semestre must exists on database"""
+        self.assertTrue(Semestre.objects.exists())
 
 class TestNewGetAnonimous(TestCase):
     def test_redirect(self):
