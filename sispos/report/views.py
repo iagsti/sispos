@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect, resolve_url as r
-from django.http import HttpResponseRedirect, HttpResponse
 from sispos.report.forms import ReportForm
-from sispos.report.models  import Report, Semestre
-from sispos.accounts.models import User
+from sispos.report.models import Report
 from django.conf import settings
+
+
+def report_list(request):
+    report_list = Report.objects.all()
+    context = {'report_list': report_list}
+    return render(request, 'report_list.html', context)
 
 
 def new(request):
@@ -14,6 +18,7 @@ def new(request):
     form = ReportForm()
     return render(request, 'report_form.html', {'form': form})
 
+
 def create(request):
     form = ReportForm(request.POST, request.FILES)
     if not form.is_valid():
@@ -21,6 +26,7 @@ def create(request):
     report, created = Report.objects.get_or_create(aluno=request.user)
     report.semestre_set.create(**form.cleaned_data)
     return redirect(r('report:confirmation', slug=report.uuid))
+
 
 def confirmation(request, slug):
     report = Report.objects.get(uuid=slug)
