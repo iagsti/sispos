@@ -9,9 +9,13 @@ class SemestreModelTest(TestCase):
 
     def test_model(self):
         self.assertTrue(Semestre.objects.exists())
-        
+
     def test_report(self):
         self.assertIsInstance(self.obj.report, Report)
+
+    def test_absolute_url(self):
+        url = self.obj.get_absolute_url()
+        self.assertEqual(url, '/report/semestre/%s' % self.obj.pk)
 
     def create_report(self):
         user = User.objects.create_user(
@@ -33,4 +37,3 @@ class SemestreModelTest(TestCase):
             encaminhamento='encaminhamento.pdf',
             report=report
         )
-        

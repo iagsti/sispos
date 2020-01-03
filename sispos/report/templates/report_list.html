@@ -1,10 +1,22 @@
 <table>
-    <tbody>
+    <thead>
         <tr>
             <th>Aluno</th>
             <th>Programa</th>
             <th>Relatório</th>
+            <th>Encaminhamento</th>
             <th>Parecer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% for report in report_list %}
+            <td>{{ report.aluno.get_full_name }}</td>
+            <td> {{ report.semestre_set.first.programa }}</td>
+            <td><a href="{{ report.semestre_set.first.relatorio.url }}">Relatório</a></td>
+            <td><a href="{{ report.semestre_set.first.encaminhamento.url }}">Encaminhamento</a></td>
+            <td>/report/parecer/{{ report.parecerorientadormestrado.pk }}</td>
+            {% endfor %}
         </tr>
     </tbody>
 </table>
