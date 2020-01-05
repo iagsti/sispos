@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="overlay"></div>
+<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+  <source src="{% static 'mp4/typing.mp4' %}" type="video/mp4">
+</video>
+
+<div class="masthead">
+  <div class="masthead-bg"></div>
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-12 my-auto">
+        <div class="masthead-content text-white py-5 py-md-0">
+          <h1 class="mb-3">SIS-POS</h1>
+          <p>Sistema para entega de relatórios de</p>
+            <p class="mb-5"><strong>Pós-Graduação</strong></p>
+          <div class="input-group input-group-newsletter">              
+            <button class="btn btn-secondary btn-block" type="button">Começar!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
