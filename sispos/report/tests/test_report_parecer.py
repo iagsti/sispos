@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from sispos.report.forms import ParecerOrientadorMestradoForm
 
-class ParecerOrientadorMestradoTest(TestCase):
+class ParecerOrientadorMestradoTestGet(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('report:parecer_orientador_mestrado'))
 
@@ -33,7 +33,7 @@ class ParecerOrientadorMestradoTest(TestCase):
             (1, '<form'),
             (10, '<textarea'),
             (1, 'type="text"'),
-            (1, '<button')
+            (4, '<button')
         )
 
         for count, expected in content:
@@ -43,4 +43,3 @@ class ParecerOrientadorMestradoTest(TestCase):
     def test_csrf(self):
         """Template must contain csrf"""
         self.assertContains(self.resp, 'csrfmiddlewaretoken')
-

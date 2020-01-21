@@ -46,6 +46,18 @@ class ReportParecerOrientadorMestradoTest(TestCase):
     def test_updated_at(self):
         """It must have a updated_at attribute"""
         self.assertIsInstance(self.obj.updated_at, datetime)
+    
+    def test_not_required(self):
+        """Require must be false"""
+        blank_set = ['s2_desempenho', 's2_metodologia', 's2_abordagem', 's2_outras_atividades',
+                    's3_resultados', 's3_perspectivas', 's3_resumo', 's3_outras_atividades']
+        for expected in blank_set:
+            with self.subTest():
+                self.assertIsBlank(ParecerOrientadorMestrado, expected)
+
+    def assertIsBlank(self, obj, parameter):
+        p_instance = getattr(obj, parameter)
+        self.assertTrue(p_instance.field.blank)
 
     def create_report(self):
         user = User.objects.create_user(
