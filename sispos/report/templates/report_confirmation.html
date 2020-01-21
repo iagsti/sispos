@@ -1,2 +1,18 @@
-<p>{{ report.semestre_set.first.programa }}</p>
-<p>{{ report.semestre_set.first.orientador }}</p>
+{% extends 'main.html' %}
+
+{% block content%}
+
+<div class="container">
+    <h2>Confirmação de envio</h2>
+    
+    <ul class="list-group">
+        <li class="list-group-item">
+            {{ report.semestre_set.first.programa }}
+        </li>
+        <li class="list-group-item">
+            {{ report.semestre_set.first.orientador }}
+      </li>
+    </ul>
+</div>
+
+{% endblock content %}

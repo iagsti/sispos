@@ -41,6 +41,14 @@ class ReportConfirmationTest(TestCase):
         """Must render report_confirmation.html"""
         self.assertTemplateUsed(self.resp, 'report_confirmation.html')
 
+    def test_inherite_main_template(self):
+        """It should inherite main.html template"""
+        self.assertTemplateUsed(self.resp, 'main.html')
+
+    def test_page_title(self):
+        """Page must contain its title"""
+        self.assertContains(self.resp, 'Confirmação de envio')
+
     def test_html(self):
         contents = [
             'Orientador 1',

@@ -1,3 +1,22 @@
-<p>Nome: {{ user.get_full_name }}</p>
-<p>Número USP: {{ user.login }}</p>
-<p>Email: {{ user.main_email }}</p>
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="container">
+    <h2>Dados do usuário</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            Nome: {{ user.get_full_name }}
+        </li>
+        <li class="list-group-item">
+            Número USP: {{ user.login }}
+        </li>
+        <li class="list-group-item">
+            Email: {{ user.main_email }}
+        </li>
+    </ul>
+</div>
+
+
+{% endblock content %}

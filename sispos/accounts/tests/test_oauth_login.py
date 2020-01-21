@@ -1,6 +1,4 @@
 from django.test import TestCase
-from django.shortcuts import resolve_url as r
-from django.http import HttpRequest
 from sispos.accounts import views
 from sispos.accounts.models import User
 from unittest.mock import MagicMock
@@ -29,8 +27,9 @@ class TestOauthLogin(TestCase):
             'main_email': 'thomas@test.com',
             'bond': "[{'tipoVinculo': 'SERVIDOR'}]"
         }
-        
+
         return user_data
+
 
 class TestAccountsLoginHelpers(TestCase):
     def setUp(self):

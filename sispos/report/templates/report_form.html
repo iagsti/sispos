@@ -1,30 +1,58 @@
-<form action="./new" enctype="multipart/form-data" method="post">
-    {% csrf_token %}
+{% extends 'main.html' %}
+{% load widget_tweaks %}
 
-    {{ form.semestre.label_tag }}
-    {{ form.semestre.errors }}
-    {{ form.semestre }}
+{% block content %}
 
-    {{ form.relator.label_tag }}
-    {{ form.relator.errors }}
-    {{ form.relator }}
+<div class="container">    
+    <form action="./new" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.semestre.id_for_label }}">
+                {{ form.semestre.label|capfirst }}
+            </label>
+            {{ form.semestre.errors }}
+            {{ form.semestre|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.relator.id_for_label }}">
+                {{ form.relator.label|capfirst }}
+            </label>
+            {{ form.relator.errors }}
+            {{ form.relator|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.orientador.id_for_label }}">
+                {{ form.orientador.label|capfirst }}
+            </label>
+            {{ form.orientador.errors }}
+            {{ form.orientador|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.programa.id_for_label }}">
+                {{ form.programa.label|capfirst }}
+            </label>
+            {{ form.programa.errors }}
+            {{ form.programa|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.relatorio.id_for_label }}">
+                {{ form.relatorio.label|capfirst }}
+            </label>
+            {{ form.relatorio.errors }}
+            {{ form.relatorio|add_class:"form-control" }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.encaminahmento.id_for_label }}">
+                {{ form.encaminhamento.label|capfirst }}
+            </label>
+            {{ form.encaminhamento.errors }}
+            {{ form.encaminhamento|add_class:"form-control" }}
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    
+    </form>
+</div>
 
-    {{ form.orientador.label_tag }}
-    {{ form.orientador.errors }}
-    {{ form.orientador }}
 
-    {{ form.programa.label_tag }}
-    {{ form.programa.errors }}
-    {{ form.programa }}
-
-    {{ form.relatorio.label_tag }}
-    {{ form.relatorio.errors }}
-    {{ form.relatorio }}
-
-    {{ form.encaminhamento.label_tag }}
-    {{ form.encaminhamento.errors }}
-    {{ form.encaminhamento }}
-
-    <button type="submit">Enviar</button>
-
-</form>
+{% endblock content %}
