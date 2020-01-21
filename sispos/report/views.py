@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, resolve_url as r
-from sispos.report.forms import ReportForm
+from sispos.report.forms import ReportForm, ParecerOrientadorMestradoForm
 from sispos.report.models import Report
 from django.conf import settings
 
@@ -17,6 +17,11 @@ def new(request):
         return create(request)
     form = ReportForm()
     return render(request, 'report_form.html', {'form': form})
+
+
+def parecer_form(request):
+    form = ParecerOrientadorMestradoForm()
+    return render(request, 'parecer_orientador_mestrado.html', {'form': form})
 
 
 def create(request):

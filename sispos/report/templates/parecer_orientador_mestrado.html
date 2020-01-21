@@ -1,0 +1,114 @@
+{% extends 'main.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2>Parecer Orientador Mestrado</h2>
+
+    <form action="#" method="post">
+        {% csrf_token %}
+        
+        <div class="accordion" id="parecer-form">
+            <div class="card">
+                <div class="card-header" id="heading-semestre-1">
+                    <h2 class="mb-0">
+                        <button 
+                            class="btn btn-link" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#semestre-1" 
+                            aria-expanded="true" 
+                            aria-controls="semestre-1">
+                            Primeiro Semestre
+                        </button>
+                    </h2>
+                </div>
+                <div id="semestre-1" class="collapse" aria-labelledby="heading-semestre-1" data-parent="#parecer-form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ form.s1_projeto.label_tag }}
+                            {{ form.s1_projeto|add_class:"form-control" }}
+                    
+                            {{ form.s1_desempenho.label_tag }}
+                            {{ form.s1_desempenho|add_class:"form-control" }}
+                        
+                            {{ form.s1_outras_atividades.label_tag }}
+                            {{ form.s1_outras_atividades|add_class:"form-control" }}
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="heading-semestre-2">
+                    <h2 class="mb-0">
+                        <button 
+                            class="btn btn-link" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#semestre-2" 
+                            aria-expanded="true" 
+                            aria-controls="semestre-1">
+                            Segundo Semestre
+                        </button>
+                    </h2>
+                </div>
+                <div id="semestre-2" class="collapse" aria-labelledby="heading-semestre-2" data-parent="#parecer-form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ form.s2_desempenho.label_tag }}
+                            {{ form.s2_desempenho|add_class:"form-control" }}
+                        
+                            {{ form.s2_metodologia.label_tag }}
+                            {{ form.s2_metodologia|add_class:"form-control" }}
+                        
+                            {{ form.s2_abordagem.label_tag  }}
+                            {{ form.s2_abordagem|add_class:"form-control" }}
+                        
+                            {{ form.s2_outras_atividades.label_tag }}    
+                            {{ form.s2_outras_atividades|add_class:"form-control" }}
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="heading-semestre-3">
+                    <h2 class="mb-0">
+                        <button 
+                            class="btn btn-link" 
+                            type="button" 
+                            data-toggle="collapse" 
+                            data-target="#semestre-3" 
+                            aria-expanded="true" 
+                            aria-controls="semestre-3">
+                            Terceiro Semestre
+                        </button>
+                    </h2>
+                </div>
+                <div id="semestre-3" class="collapse" aria-labelledby="heading-semestre-3" data-parent="#parecer-form">
+                    <div class="card-body">
+                        <div class="form-group">
+                            {{ form.s3_resultados.label_tag }}
+                            {{ form.s3_resultados|add_class:"form-control" }}
+                        
+                            {{ form.s3_perspectivas.label_tag }}
+                            {{ form.s3_perspectivas|add_class:"form-control" }}
+                            
+                            {{ form.s3_resumo.label_tag }}
+                            {{ form.s3_resumo|add_class:"form-control" }}
+                        
+                            {{ form.s3_outras_atividades.label_tag }}
+                            {{ form.s3_outras_atividades|add_class:"form-control" }}
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+    </form>
+
+</div>
+
+{% endblock content  %}
