@@ -25,12 +25,14 @@
 </head>
 
 <body>
-
+    <nav class="navbar fixed-top navbar-light bg-light">
+        <a href="#" class="navbar-brand">SIS-POS</a>
+    </nav>
     {% block content %}
     {% endblock content %}
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Custom scripts for this template -->

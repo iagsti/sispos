@@ -26,6 +26,9 @@ class TestReportNewGetLoggedIn(TestCase):
         """Must render the new template"""
         self.assertTemplateUsed(self.resp, 'report_form.html')
 
+    def test_template_main(self):
+        self.assertTemplateUsed(self.resp, 'main.html')
+
     def test_html(self):
         """Must contain fields Relator=select, Orientador=select, Programa=select,
         Relatório=arquivo, Formulário de encaminhamento=arquivo"""
@@ -57,7 +60,7 @@ class TestReportNewPost(TestCase):
         )
 
         self.client.force_login(aluno)
-        
+
         self.data = dict(
             semestre='Primeiro Semestre',
             relator='Relator 1',
@@ -67,7 +70,7 @@ class TestReportNewPost(TestCase):
             encaminhamento=mock.MagicMock(spec=File),
         )
         self.resp = self.client.post(r('report:new'), self.data)
-    
+
     def test_post(self):
         """Status code must be 302"""
         self.assertEqual(302, self.resp.status_code)
@@ -79,6 +82,7 @@ class TestReportNewPost(TestCase):
     def test_semestre(self):
         """Semestre must exists on database"""
         self.assertTrue(Semestre.objects.exists())
+
 
 class TestNewGetAnonimous(TestCase):
     def test_redirect(self):

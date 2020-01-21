@@ -41,6 +41,14 @@ class ReportListTest(TestCase):
     def test_template(self):
         self.assertTemplateUsed(self.resp, 'report_list.html')
 
+    def test_inherite_main_template(self):
+        """It should inherite main.html template"""
+        self.assertTemplateUsed(self.resp, 'main.html')
+
+    def test_page_title(self):
+        """Page must contain its title"""
+        self.assertContains(self.resp, 'Relatórios')
+
     def test_template_list_header(self):
         """Report list must contains the correct header content"""
         header = ('Aluno', 'Programa', 'Relatório',
