@@ -33,7 +33,7 @@ class ParecerOrientadorMestradoTestGet(TestCase):
             (1, '<form'),
             (10, '<textarea'),
             (1, 'type="text"'),
-            (4, '<button')
+            (1, '<button')
         )
 
         for count, expected in content:

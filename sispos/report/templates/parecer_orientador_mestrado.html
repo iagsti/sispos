@@ -7,102 +7,115 @@
 
     <h2>Parecer Orientador Mestrado</h2>
 
+    
     <form action="#" method="post">
         {% csrf_token %}
+        <ul class="nav nav-tabs">
+           <li class="nav-item">
+             <a 
+                class="nav-link active" 
+                id="semestre-1-tab" 
+                href="#semestre-1" 
+                data-toggle="tab" 
+                role="tab" 
+                aria-controls="semestre-1" 
+                aria-selected="true"
+            >
+                <strong>Primeiro Semestre</strong>
+            </a>
+           </li>
+           <li class="nav-item">
+             <a 
+                class="nav-link" 
+                id="semestre-2-tab" 
+                href="#semestre-2" 
+                data-toggle="tab" 
+                role="tab" 
+                aria-controls="semestre-2" 
+                aria-selected="false"
+            >
+                <strong>Segundo Semestre</strong>
+            </a>
+           </li>
+           <li class="nav-item">
+             <a 
+                class="nav-link" 
+                id="semestre-3-tab" 
+                href="#semestre-3" 
+                data-toggle="tab" 
+                role="tab" 
+                aria-controls="semestre-3" 
+                aria-selected="false"
+            >
+                <strong>Terceiro Semestre</strong>
+            </a>
+           </li>
+        </ul>
         
-        <div class="accordion" id="parecer-form">
-            <div class="card">
-                <div class="card-header" id="heading-semestre-1">
-                    <h2 class="mb-0">
-                        <button 
-                            class="btn btn-link" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#semestre-1" 
-                            aria-expanded="true" 
-                            aria-controls="semestre-1">
-                            Primeiro Semestre
-                        </button>
-                    </h2>
-                </div>
-                <div id="semestre-1" class="collapse" aria-labelledby="heading-semestre-1" data-parent="#parecer-form">
-                    <div class="card-body">
-                        <div class="form-group">
-                            {{ form.s1_projeto.label_tag }}
-                            {{ form.s1_projeto|add_class:"form-control" }}
-                    
-                            {{ form.s1_desempenho.label_tag }}
-                            {{ form.s1_desempenho|add_class:"form-control" }}
-                        
-                            {{ form.s1_outras_atividades.label_tag }}
-                            {{ form.s1_outras_atividades|add_class:"form-control" }}
-                        </div>                        
-                    </div>
-                </div>
+        <div class="tab-content" id="semestres-tab">        
+            <div class="tab-pane fade show active" id="semestre-1" role="tabpanel" aria-labelledby="semestre-1-tab">
+                <div class="form-group">
+                    <label for="{{ form.s1_projeto.id_for_label }}">
+                        <strong>{{ form.s1_projeto.label }}:</strong>
+                    </label>
+                    {{ form.s1_projeto|add_class:"form-control" }}
+
+                    <label for="{{ s1_desempenho.id_for_label }}">
+                        <strong>{{ form.s1_desempenho.label }}:</strong>
+                    </label>
+                    {{ form.s1_desempenho|add_class:"form-control" }}
+
+                    <label for="{{ s1_outras_atividades.id_for_label }}">
+                        <strong>{{ form.s1_outras_atividades.label }}:</strong>
+                    </label>
+                    {{ form.s1_outras_atividades|add_class:"form-control" }}
+                </div>                        
             </div>
-            <div class="card">
-                <div class="card-header" id="heading-semestre-2">
-                    <h2 class="mb-0">
-                        <button 
-                            class="btn btn-link" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#semestre-2" 
-                            aria-expanded="true" 
-                            aria-controls="semestre-1">
-                            Segundo Semestre
-                        </button>
-                    </h2>
-                </div>
-                <div id="semestre-2" class="collapse" aria-labelledby="heading-semestre-2" data-parent="#parecer-form">
-                    <div class="card-body">
-                        <div class="form-group">
-                            {{ form.s2_desempenho.label_tag }}
-                            {{ form.s2_desempenho|add_class:"form-control" }}
-                        
-                            {{ form.s2_metodologia.label_tag }}
-                            {{ form.s2_metodologia|add_class:"form-control" }}
-                        
-                            {{ form.s2_abordagem.label_tag  }}
-                            {{ form.s2_abordagem|add_class:"form-control" }}
-                        
-                            {{ form.s2_outras_atividades.label_tag }}    
-                            {{ form.s2_outras_atividades|add_class:"form-control" }}
-                        </div>                        
-                    </div>
-                </div>
+            <div class="tab-pane fade" id="semestre-2" role="tabpanel" aria-labelledby="semestre-2-tab">
+                <div class="form-group">
+                    <label for="{{ form.s2_desempenho.id_for_label }}">
+                        <strong>{{ form.s2_desempenho.label }}:</strong>
+                    </label>
+                    {{ form.s2_desempenho|add_class:"form-control" }}
+
+                    <label for="{{ form.s2_metodologia.id_for_label }}">
+                        <strong>{{ form.s2_metodologia.label }}:</strong>
+                    </label>
+                    {{ form.s2_metodologia|add_class:"form-control" }}
+
+                    <label for="{{ form.s2_abordagem.id_for_label }}">
+                        <strong>{{ form.s2_abordagem.label }}:</strong>
+                    </label>
+                    {{ form.s2_abordagem|add_class:"form-control" }}
+
+                    <label for="{{ form.s2_outras_atividades.id_for_label }}">
+                        <strong>{{ form.s2_outras_atividades.label }}:</strong>
+                    </label>
+                    {{ form.s2_outras_atividades|add_class:"form-control" }}
+                </div>                        
             </div>
-            <div class="card">
-                <div class="card-header" id="heading-semestre-3">
-                    <h2 class="mb-0">
-                        <button 
-                            class="btn btn-link" 
-                            type="button" 
-                            data-toggle="collapse" 
-                            data-target="#semestre-3" 
-                            aria-expanded="true" 
-                            aria-controls="semestre-3">
-                            Terceiro Semestre
-                        </button>
-                    </h2>
-                </div>
-                <div id="semestre-3" class="collapse" aria-labelledby="heading-semestre-3" data-parent="#parecer-form">
-                    <div class="card-body">
-                        <div class="form-group">
-                            {{ form.s3_resultados.label_tag }}
-                            {{ form.s3_resultados|add_class:"form-control" }}
-                        
-                            {{ form.s3_perspectivas.label_tag }}
-                            {{ form.s3_perspectivas|add_class:"form-control" }}
-                            
-                            {{ form.s3_resumo.label_tag }}
-                            {{ form.s3_resumo|add_class:"form-control" }}
-                        
-                            {{ form.s3_outras_atividades.label_tag }}
-                            {{ form.s3_outras_atividades|add_class:"form-control" }}
-                        </div>                        
-                    </div>
-                </div>
+            <div class="tab-pane fade" id="semestre-3" role="tabpanel" aria-labelledby="semestre-3-tab">
+                <div class="form-group">
+                    <label for="{{ form.s3_resultados.id_for_label }}">
+                        <strong>{{ form.s3_resultados.label }}:</strong>
+                    </label>
+                    {{ form.s3_resultados|add_class:"form-control" }}
+
+                    <label for="{{ form.s3_perspectivas.id_for_label }}">
+                        <strong>{{ form.s3_perspectivas.label }}:</strong>
+                    </label>
+                    {{ form.s3_perspectivas|add_class:"form-control" }}
+
+                    <label for="{{ form.s3_resumo.id_for_label }}">
+                        <strong>{{ form.s3_resumo.label }}:</strong>
+                    </label>
+                    {{ form.s3_resumo|add_class:"form-control" }}
+
+                    <label for="{{ form.s3_outras_atividades.id_for_label }}">
+                        <strong>{{ form.s3_outras_atividades.label }}:</strong>
+                    </label>
+                    {{ form.s3_outras_atividades|add_class:"form-control" }}
+                </div>                        
             </div>
         </div>
         <br>
