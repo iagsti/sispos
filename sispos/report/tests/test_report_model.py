@@ -37,3 +37,7 @@ class TestReportModel(TestCase):
     def test_str(self):
         self.assertEqual('Marc', str(self.obj))
 
+    def test_get_absolute_id(self):
+        expected = '/report/%s' % str(self.obj.uuid)
+        self.assertEqual(expected, self.obj.get_absolute_url())
+

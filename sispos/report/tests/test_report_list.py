@@ -88,12 +88,14 @@ class ReportListTest(TestCase):
         semestre = report.semestre_set.first()
         relatorio_url = semestre.relatorio.url
         encaminahmento_url = semestre.encaminhamento.url
+        parecer = 'href="%s/parecer-orientador-mestrado"' % report.get_absolute_url()
 
         content = (
             'Stephen Pilsen',
             'Mestrado',
             relatorio_url,
-            encaminahmento_url
+            encaminahmento_url,
+            parecer
         )
 
         for expected in content:

@@ -8,6 +8,10 @@ class Report(models.Model):
     aluno = models.ForeignKey(User, on_delete=models.CASCADE)
     uuid = models.UUIDField('uuid', default=uuid4, editable=False)
 
+    def get_absolute_url(self):
+        return '/report/%s' % str(self.uuid)
+        
+    
     class Meta:
         verbose_name = 'relatório'
         verbose_name_plural = 'relatórios'

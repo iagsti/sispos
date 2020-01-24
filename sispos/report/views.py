@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, resolve_url as r
 from sispos.report.forms import ReportForm, ParecerOrientadorMestradoForm
-from sispos.report.models import Report
+from sispos.report.models import Report, ParecerOrientadorMestrado
 from django.conf import settings
 
 
@@ -19,11 +19,6 @@ def new(request):
     return render(request, 'report_form.html', {'form': form})
 
 
-def parecer_form(request):
-    form = ParecerOrientadorMestradoForm()
-    return render(request, 'parecer_orientador_mestrado.html', {'form': form})
-
-
 def create(request):
     form = ReportForm(request.POST, request.FILES)
     if not form.is_valid():
@@ -31,6 +26,23 @@ def create(request):
     report, created = Report.objects.get_or_create(aluno=request.user)
     report.semestre_set.create(**form.cleaned_data)
     return redirect(r('report:confirmation', slug=report.uuid))
+
+
+def parecer_form(request, slug):
+    report = {'report': slug}
+    form = ParecerOrientadorMestradoForm(report)
+    return render(request, 'parecer_orientador_mestrado.html', {'form': form})
+
+
+def create_parecer_orientador_mestrado(request):
+    from django.http import HttpResponse
+    form = ParecerOrientadorMestradoForm(request.POST)
+    if form.is_valid():
+        report = Report.objects.get(uuid=form.cleaned_data['report'])
+        form.cleaned_data['report'] = report
+        parecer = ParecerOrientadorMestrado.objects.create(**form.cleaned_data)
+    to = report.get_absolute_url() + '/parecer-orientador-mestrado'
+    return redirect(to=to)
 
 
 def confirmation(request, slug):
