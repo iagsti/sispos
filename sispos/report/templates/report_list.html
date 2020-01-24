@@ -23,7 +23,11 @@
                 <td> {{ report.semestre_set.first.programa }}</td>
                 <td><a href="{{ report.semestre_set.first.relatorio.url }}">Relatório</a></td>
                 <td><a href="{{ report.semestre_set.first.encaminhamento.url }}">Encaminhamento</a></td>
-                <td>/report/parecer/{{ report.parecerorientadormestrado.pk }}</td>
+                <td>
+                    <a href="{{ report.get_absolute_url }}/parecer-orientador-mestrado" class="btn btn-primary">
+                        Parecer
+                    </a>
+                </td>
                 {% endfor %}
             </tr>
         </tbody>
