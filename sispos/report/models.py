@@ -94,6 +94,3 @@ class ParecerOrientadorMestrado(models.Model):
     class Meta:
         verbose_name = 'parecer do orientador - mestrado'
         verbose_name_plural = 'pareceres dos orientadores - mestrados'
-
-    def __str__(self):
-        return self.report.orientador

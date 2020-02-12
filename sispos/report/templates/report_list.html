@@ -17,8 +17,8 @@
             </tr>
         </thead>
         <tbody>
+            {% for report in report_list %}
             <tr>
-                {% for report in report_list %}
                 <td>{{ report.aluno.get_full_name }}</td>
                 <td> {{ report.semestre_set.first.programa }}</td>
                 <td><a href="{{ report.semestre_set.first.relatorio.url }}">Relatório</a></td>
@@ -28,8 +28,8 @@
                         Parecer
                     </a>
                 </td>
-                {% endfor %}
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

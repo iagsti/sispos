@@ -11,6 +11,10 @@ class ParecerOrientadorMestradoTestGet(TestCase):
                                         password='92874', name='Marc', type='I')
         
         report = Report.objects.create(aluno=aluno)
+        
+        ParecerOrientadorMestrado.objects.create(s1_desempenho='Desempenho', s1_projeto='Projeto',
+                          s1_outras_atividades='Outras atividades', report=report)
+        
         self.report_uuid = report.uuid
         self.resp = self.client.get(r('report:parecer_orientador_mestrado', slug=report.uuid))
 
@@ -58,10 +62,23 @@ class ParecerOrientadorMestradoTestGet(TestCase):
         """report field must be filled with uuid report"""
         expected = 'value="%s"' % self.report_uuid
         self.assertContains(self.resp, expected)
+    
+    def test_form_is_valid(self):
+        form = self.resp.context['form']
+        self.assertTrue(form.is_bound)
+    
+    def test_context_form(self):
+        """Form must be prepopulated"""
+        form = self.resp.context['form']
+        form.is_valid()
+        self.assertEqual('Desempenho', form.cleaned_data['s1_desempenho'])
 
 
 class ParecerOrientadorMestradoTestPost(TestCase):
     def setUp(self):
+        aluno = User.objects.create_user(login='3544444', main_email='main@test.com',
+                                        password='92874', name='Marc', type='I')
+        self.report = Report.objects.create(aluno=aluno)
         data = self.make_parecer()
         self.resp = self.client.post(r('report:parecer_orientador_mestrado_create'), data)
 
@@ -73,13 +90,17 @@ class ParecerOrientadorMestradoTestPost(TestCase):
         """Parecer should be saved"""
         self.assertEqual(ParecerOrientadorMestrado.objects.count(), 1)
 
-    def make_parecer(self, **kwargs):
-        aluno = User.objects.create_user(login='3544444', main_email='main@test.com',
-                                        password='92874', name='Marc', type='I')
+    def test_parecer_update_or_create(self):
+        """Parecer should be updated or created"""
+        data = self.make_parecer(s2_desempenho='Desempenho', s2_metodologia='Metodologia',
+                                s2_abordagem='Abordagem', s2_outras_atividades='Outras Atividades',
+                                s2_resultados='Resultados', report=self.report.uuid)
+        resp = self.client.post(r('report:parecer_orientador_mestrado_create'), data)
+        self.assertEqual(1, ParecerOrientadorMestrado.objects.filter(s2_desempenho='Desempenho').count())
 
-        report = Report.objects.create(aluno=aluno)
+    def make_parecer(self, **kwargs):
         parecer_default = dict(s1_desempenho='Desempenho', s1_projeto='Projeto',
-                          s1_outras_atividades='Outras atividades', report=report.uuid)
+                          s1_outras_atividades='Outras atividades', report=self.report.uuid)
 
         parecer = dict(parecer_default, **kwargs)
 
