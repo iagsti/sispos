@@ -13,6 +13,7 @@
             {{ form.semestre.errors }}
             {{ form.semestre|add_class:"form-control" }}
         </div>
+        {% if perms.report.change_semestre_relator %}
         <div class="form-group">
             <label for="{{ form.relator.id_for_label }}">
                 {{ form.relator.label|capfirst }}
@@ -20,6 +21,7 @@
             {{ form.relator.errors }}
             {{ form.relator|add_class:"form-control" }}
         </div>
+        {% endif %}
         <div class="form-group">
             <label for="{{ form.orientador.id_for_label }}">
                 {{ form.orientador.label|capfirst }}
