@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
 from django.core.files import File
+from django.contrib.auth.models import Permission
 from sispos.report.forms import ReportForm
 from sispos.report.models import Report, Semestre
 from unittest import mock
@@ -9,14 +10,14 @@ from sispos.accounts.models import User
 
 class TestReportNewGetLoggedIn(TestCase):
     def setUp(self):
-        user = User.objects.create_user(
+        self.user = User.objects.create_user(
             login='3544444',
             main_email='main@test.com',
             password='92874',
             name='Marc',
             type='I'
         )
-        self.client.force_login(user)
+        self.client.force_login(self.user)
         self.resp = self.client.get(r('report:new'))
 
     def test_get(self):
@@ -34,7 +35,7 @@ class TestReportNewGetLoggedIn(TestCase):
         Relatório=arquivo, Formulário de encaminhamento=arquivo"""
         expected = (
             ('<form', 1),
-            ('<select', 4),
+            ('<select', 3),
             ('<input', 3),
             ('<button', 1)
         )
@@ -47,6 +48,31 @@ class TestReportNewGetLoggedIn(TestCase):
         """Must be an instance of ReportForm"""
         form = self.resp.context['form']
         self.assertIsInstance(form, ReportForm)
+
+    def test_aluno_form_fields(self):
+        """Aluno group should not see relator field"""
+        self.assertNotContains(self.resp, 'name="relator"')
+
+
+class TestReportNewGetLoggedInRelator(TestCase):
+    def setUp(self):
+        user = User.objects.create_user(
+            login='3544444',
+            main_email='main@test.com',
+            password='92874',
+            name='Marc',
+            type='I'
+        )
+
+        permission = Permission.objects.get(name='Can change semestre relator')
+        user.user_permissions.add(permission)
+
+        self.client.force_login(user)
+        self.resp = self.client.get(r('report:new'))
+    
+    def test_user_can_change_semestre_relator(self):
+        """Field Relator should be rendered"""
+        self.assertContains(self.resp, '<select', 4)
 
 
 class TestReportNewPost(TestCase):

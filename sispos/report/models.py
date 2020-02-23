@@ -46,6 +46,9 @@ class Semestre(models.Model):
     def get_absolute_url(self):
         return '/report/semestre/%s' % self.pk
 
+    class Meta:
+        permissions = [('change_semestre_relator', 'Can change semestre relator')]
+
 
 class ParecerOrientadorMestrado(models.Model):
     s1_desempenho = models.TextField(
