@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'test_without_migrations',
     'django_extensions',
+    'bootstrap4',
     'widget_tweaks',
     'sispos.core',
     'sispos.accounts',
